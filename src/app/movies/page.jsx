@@ -4,7 +4,11 @@ import api from "@/lib/axios";
 import React from "react";
 
 export default async function page({ searchParams }) {
-  const { type } = searchParams;
-  const { data, totalPages } = await getDynamicMovies(type);
-  return <MoviesList movies={data} totalPages={totalPages} />;
+  let { type, page } = searchParams;
+  if (!type || isNaN(page)) {
+    type = "popular";
+    page = 1;
+  }
+  const { data, totalPages } = await getDynamicMovies({ type, page });
+  return <MoviesList movies={data} totalPages={totalPages} type={type} />;
 }

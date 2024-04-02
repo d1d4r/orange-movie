@@ -1,16 +1,9 @@
+"use client";
 import React from "react";
 import MovieCard from "./MovieCard";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "../ui/pagination";
+import MoviesPagination from "./MoviesPagination";
 
-export default function MoviesList({ movies, totalPages }) {
+export default function MoviesList({ movies, totalPages, type }) {
   return (
     <div>
       <div className="grid grid-cols-5 p-5">
@@ -18,25 +11,7 @@ export default function MoviesList({ movies, totalPages }) {
           return <MovieCard key={movie.id} movie={movie} />;
         })}
       </div>
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">{totalPages}</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+      <MoviesPagination totalPages={totalPages} type={type} />
     </div>
   );
 }

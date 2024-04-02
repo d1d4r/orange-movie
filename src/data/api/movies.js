@@ -21,8 +21,22 @@ export const getMovieDetails = async (movie_id) => {
   return res.data;
 };
 
-export const getDynamicMovies = async (segment) => {
-  console.log("🚀 ~ getDynamicMovies ~ segment:", segment);
-  const res = await api.get(`movie/${segment}?page=2`);
+export const getDynamicMovies = async ({ type, page = 1 }) => {
+  const res = await api.get(`movie/${type}?page=${page}`);
   return { data: res.data.results, totalPages: res.data.total_pages };
 };
+
+export async function ActorsInMovie(id) {
+  const res = await api.get(`movie/${id}/credits`);
+  return res.data.cast;
+}
+
+export async function getSimilarMovies(id) {
+  const res = await api.get(`movie/${id}/similar?page=1`);
+  return res.data.results;
+}
+
+export async function getTrailerMovie(id) {
+  const res = await api.get(`movie/${id}/videos`);
+  return res.data.results[0]?.key;
+}

@@ -22,7 +22,7 @@ export default function ActorCard({ actor }) {
           {actor.name}
         </h3>
         <p className="mt-1 text-gray-500 dark:text-gray-400">
-          {actor.gender === 1 ? "male" : "female"}
+          {actor.gender === 1 ? "female" : "male"}
         </p>
       </div>
     </Link>

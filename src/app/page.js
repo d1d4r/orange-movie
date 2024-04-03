@@ -8,6 +8,7 @@ export default async function Home() {
   return (
     <div>
       <MovieCarousel />
+     
       <main className="space-y-10">
         <PopularMovies />
         <NowPlaying />

@@ -1,4 +1,6 @@
+import { formatMoney, roundToOneDecimalPlace } from "@/lib/formater";
 import React from "react";
+import { CircleDollarSign, Vote, Languages, CalendarCheck } from "lucide-react";
 
 export default function MovieInfo({
   overview,
@@ -8,23 +10,31 @@ export default function MovieInfo({
   language,
 }) {
   return (
-    <div className="w-1/2 m-auto space-y-10 border">
-      <Info name="Over view" info={overview} />
-      <Info name="Budget" info={budget} />
-      <Info name="Release date" info={release_date} />
-      <Info name="Vote average" info={vote_average} />
-      <Info name="Language" info={language} />
+    <div className="w-1/2 m-auto space-y-10 ">
+      <Info icone="" name="Over view" info={overview} />
+      <Info
+        icone={<CircleDollarSign />}
+        name="Budget"
+        info={formatMoney(budget)}
+      />
+      <Info icone={<CalendarCheck />} name="Release date" info={release_date} />
+      <Info
+        icone={<Vote />}
+        name="Vote average"
+        info={roundToOneDecimalPlace(vote_average)}
+      />
+      <Info icone={<Languages />} name="Language" info={language} />
     </div>
   );
 }
 
-export const Info = ({ name, info }) => {
+export const Info = ({ name, info, icone }) => {
   return (
-    <div className="space-y-2 ">
-      <h2 className="text-2xl">
-        {name}:{info}
+    <div className="p-2 space-y-2">
+      <h2 className="flex items-center text-2xl ">
+        {icone} {name}
       </h2>
-      {/* <p>{info}</p> */}
+      <p>{info}</p>
     </div>
   );
 };

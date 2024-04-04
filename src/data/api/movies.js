@@ -1,5 +1,19 @@
 import api from "@/lib/axios";
 
+export const discoverMovies = async ({
+  sort_by = "popularity.desc",
+  vote_average = "",
+  with_genres = "",
+  year = "",
+  page = 1,
+}) => {
+  console.log("🚀 ~ params", +with_genres, vote_average, year, page);
+///discover/movie?with_genres=16&page=50&sort_by=popularity.desc
+  const res = await api.get(
+    `discover/movie?page=${+page}&sort_by=${sort_by}&vote_average.gte=${vote_average}&with_genres=${+with_genres}`
+  );
+  return { data: res.data.results, totalPages: res.data.total_pages };
+};
 export const getPopularMovies = async () => {
   const res = await api.get("movie/popular?language=en-US");
   return res.data.results;

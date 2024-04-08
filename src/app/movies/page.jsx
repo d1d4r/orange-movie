@@ -5,7 +5,7 @@ import {
   getDynamicMovies,
 } from "@/data/api/movies";
 import api from "@/lib/axios";
-import React from "react";
+import React, { Suspense } from "react";
 export default async function page({ searchParams }) {
   let { sort_by, with_genres, year, page, type } = searchParams;
 
@@ -21,11 +21,12 @@ export default async function page({ searchParams }) {
     year,
     page,
   });
-  console.log("errrrrrrrrrrrrrrrrrrrrrro", typeof error);
 
-  return (
-    data ? <MoviesList movies={data} totalPages={totalPages} /> : (
-      <p>{JSON.stringify(error)}</p>
-    )
+  return data ? (
+    <Suspense fallback={<div>loading...</div>}>
+      <MoviesList movies={data} totalPages={totalPages} />
+    </Suspense>
+  ) : (
+    <p>{JSON.stringify(error)}</p>
   );
 }

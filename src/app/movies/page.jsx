@@ -7,6 +7,7 @@ import {
 import api from "@/lib/axios";
 import React, { Suspense } from "react";
 export default async function page({ searchParams }) {
+
   let { sort_by, with_genres, year, page, type } = searchParams;
 
   console.log("🚀 ~ page ~ searchParams:", searchParams);
@@ -14,6 +15,7 @@ export default async function page({ searchParams }) {
   //   type = "top_rated";
   //   page = 1;
   // }
+
   const { data, totalPages, error } = await discoverMovies({
     sort_by,
     vote_average: 0,
@@ -23,9 +25,7 @@ export default async function page({ searchParams }) {
   });
 
   return data ? (
-    <Suspense fallback={<div>loading...</div>}>
-      <MoviesList movies={data} totalPages={totalPages} />
-    </Suspense>
+    <MoviesList movies={data} totalPages={totalPages} />
   ) : (
     <p>{JSON.stringify(error)}</p>
   );

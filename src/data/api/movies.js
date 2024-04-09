@@ -19,20 +19,37 @@ export const discoverMovies = async ({
   }
 };
 export const getPopularMovies = async () => {
-  const res = await api.get("movie/popular?language=en-US");
-  return res.data.results;
+  try {
+    const res = await api.get("movie/popular?language=en-US");
+
+    return { data: res.data.results };
+  } catch (error) {
+    return { error: error.code };
+  }
 };
 export const getTopRatedMovies = async () => {
-  const res = await api.get("movie/top_rated?language=en-US");
-  return res.data.results;
+  try {
+    const res = await api.get("movie/top_rated?language=en-US");
+    return { data: res.data.results };
+  } catch (error) {
+    return { error: error.code };
+  }
 };
 export const getUpComingMovies = async () => {
-  const res = await api.get("movie/upcoming?language=en-US");
-  return res.data.results;
+  try {
+    const res = await api.get("movie/upcoming?language=en-US");
+    return { data: res.data.results };
+  } catch (error) {
+    return { error: error.code };
+  }
 };
 export const getNowPlayMovies = async () => {
-  const res = await api.get("movie/now_playing?language=en-US");
-  return res.data.results;
+  try {
+    const res = await api.get("movie/now_playing?language=en-US");
+    return { data: res.data.results };
+  } catch (error) {
+    return { error: error.code };
+  }
 };
 export const getAllMovies = async () => {
   try {

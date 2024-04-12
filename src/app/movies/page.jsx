@@ -1,4 +1,6 @@
+import Filters from "@/components/filterMovies/Filters";
 import MoviesList from "@/components/movies/MoviesList";
+import Skeleton from "@/components/movies/Skeleton";
 import {
   discoverMovies,
   getAllMovies,
@@ -6,6 +8,7 @@ import {
 } from "@/data/api/movies";
 import api from "@/lib/axios";
 import React, { Suspense } from "react";
+
 export default async function page({ searchParams }) {
   let { sort_by, with_genres, year, page, type } = searchParams;
 
@@ -24,13 +27,18 @@ export default async function page({ searchParams }) {
   // });
 
   return (
-    <Suspense fallback={<div>loading...</div>}>
-      <MoviesList
-        sort_by={sort_by}
-        with_genres={with_genres}
-        year={year}
-        page={page}
-      />
-    </Suspense>
+    <div key={Math.random()}>
+      {/* <Skeleton/> */}
+      <Filters />
+      <p className="px-5 text-4xl">MOVIES</p>
+      <Suspense fallback={<Skeleton />}>
+        <MoviesList
+          sort_by={sort_by}
+          with_genres={with_genres}
+          year={year}
+          page={page}
+        />
+      </Suspense>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -50,10 +51,18 @@ export default function Nav() {
         <SheetContent>
           <SheetHeader>
             <SheetDescription className="flex flex-col gap-5 mt-5 sm:items-center sm:mt-0 sm:ps-5">
-              <MenuItemDropdown />
-              <NavLink href={"/"} name={"home"} />
-              <NavLink href={"/actors"} name={"actors"} />
-              <NavLink href={"/tv-show"} name={"tvshow"} />
+              <SheetClose asChild>
+                <NavLink href={"/"} name={"home"} />
+              </SheetClose>
+              <SheetClose asChild>
+                <MenuItemDropdown />
+              </SheetClose>
+              <SheetClose asChild>
+                <NavLink href={"/actors"} name={"actors"} />
+              </SheetClose>
+              <SheetClose asChild>
+                <NavLink href={"/tv-show"} name={"tvshow"} />
+              </SheetClose>
             </SheetDescription>
           </SheetHeader>
         </SheetContent>
@@ -71,19 +80,26 @@ export const MenuItemDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger>Movies</DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>list</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href={"/movies?type=popular"}>popular</Link>
+          <Link href={"/movies?type=popular"} className="border w-full">
+            All
+          </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem>
-          <Link href={"/movies?type=now_playing"}>now playing </Link>
+          <Link href={"/movies?type=popular"}>Popular</Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem>
-          <Link href={"/movies?type=top_rated"}>top rated</Link>
+          <Link href={"/movies?type=now_playing"}>Now Playing </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem>
-          <Link href={"#"}>up coming </Link>
+          <Link href={"/movies?type=top_rated"}>Top Rated</Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem>
+          <Link href={"/movies?type=up_coming"}>up coming </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

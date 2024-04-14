@@ -71,11 +71,17 @@ module.exports = {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
         },
+
+        "left-to-right": {
+          "0%": { transform: "translateX(-100px)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shade: "shade 0.6s",
+        "left-to-right": "left-to-right 0.2s ease-out",
       },
     },
   },

@@ -4,14 +4,11 @@ import SwiperMovies from "../movies/SwiperMovies";
 import { getUpComingMovies } from "@/data/api/movies";
 
 export default async function UpComing() {
-  const res = await api.get("upcoming?language=en-US");
-  const data = await getUpComingMovies();
+  const { data, error } = await getUpComingMovies();
 
-  return (
-    <SwiperMovies
-      title="Up Coming"
-      data={data}
-      href="/movies?type=upcoming"
-    ></SwiperMovies>
+  return data ? (
+    <SwiperMovies title="Up Coming" data={data} href="/movies?type=upcoming" />
+  ) : (
+    <p>{error}</p>
   );
 }

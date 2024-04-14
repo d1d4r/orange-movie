@@ -1,0 +1,38 @@
+"use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Skeleton } from "./ui/skeleton";
+
+export default function SwiperSkeleton() {
+  const skiltons = [1, 2, 3, 4, 5, 6];
+  return (
+    <div className="p-5">
+      <div className="flex justify-between mb-2">
+        <h2 className="text-2xl">loading...</h2>
+        <p>see more +</p>
+      </div>
+      <Swiper spaceBetween={10} slidesPerView={5}>
+        {skiltons.map((skilton) => {
+          return (
+            <SwiperSlide key={skilton}>
+              <div className="flex flex-col space-y-3 border h-96">
+                <Skeleton className="w-full h-full " />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[250px]" />
+                  <Skeleton className="h-4 w-[100px]" />
+                </div>
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
+}
+
+// const isLarge = useMediaQuery("(min-width: 900px)");

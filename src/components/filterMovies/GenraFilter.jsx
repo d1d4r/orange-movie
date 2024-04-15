@@ -18,13 +18,20 @@ import {
 } from "@/components/ui/popover";
 import { useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function GenraFilter({ data, name }) {
   const [open, setOpen] = useState(false);
+  
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const value1 = searchParams.get("with_genres");
 
-  const params = useSearchParams();
-  const value1 = params.get("with_genres");
+  const createPageURL = (geners) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("with_genres",geners);
+    return `${pathname}?${params.toString()}`;
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -45,12 +52,12 @@ export default function GenraFilter({ data, name }) {
         <Command>
           <CommandInput placeholder="Search item..." className="h-9" />
           <CommandEmpty>{`No ${name} found.`}</CommandEmpty>
-          <CommandGroup>
+          <CommandGroup className="overflow-auto h-80">
             {data?.map((item) => (
               <CommandItem key={item.value} className="p-0 ">
                 <Link
                   className="flex w-full p-2 text-center "
-                  href={`?with_genres=${item.value}`}
+                  href={createPageURL(item.value)}
                   onClick={() => {
                     setOpen(false);
                   }}

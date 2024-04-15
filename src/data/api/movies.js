@@ -7,10 +7,10 @@ export const discoverMovies = async ({
   year = "",
   page = 1,
 }) => {
-  console.log("🚀 ~ params", +with_genres, vote_average, year, page);
+  //console.log("🚀 ~ params", +with_genres, vote_average, year, page);
   try {
     const res = await api.get(
-      `discover/movie?page=${page}&sort_by=${sort_by}&vote_average.gte=${vote_average}&with_genres=${with_genres}`
+      `discover/movie?page=${page}&year=${year}&sort_by=${sort_by}&vote_average.gte=${vote_average}&with_genres=${with_genres}`
     );
     return { data: res.data.results, totalPages: res.data.total_pages };
   } catch (error) {
@@ -96,6 +96,26 @@ export async function genresList() {
     return { value: genre.id.toString(), label: genre.name };
   });
   return mapedRes;
+}
+
+export function GetYears() {
+  const years = [];
+
+  for (let year = 1930; year < 2025; year++) {
+    years.push({ value: year.toString(), label: year });
+  }
+  years.sort((a, b) => b.label - a.label);
+  return years;
+}
+
+export function GetVotes() {
+  const votes = [];
+
+  for (let vote = 1; vote < 11; vote++) {
+    votes.push({ value: vote.toString(), label: vote });
+  }
+  votes.sort((a, b) => b.label - a.label);
+  return votes;
 }
 
 // const options = {

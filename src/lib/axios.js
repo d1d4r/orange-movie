@@ -8,21 +8,5 @@ const api = axios.create({
   },
 });
 
-// Alter defaults after api has been created
-
-// api.interceptors.request.use(
-//   (config) => {
-//     config.headers = {
-//       // Add your custom headers here
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Example: Authorization header with token from localStorage
-//       // Add other headers as needed
-//     };
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
 
 export default api;

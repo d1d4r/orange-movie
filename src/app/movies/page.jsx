@@ -8,17 +8,15 @@ import {
 } from "@/data/api/movies";
 import api from "@/lib/axios";
 import React, { Suspense } from "react";
-
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
 
 export default async function page({ searchParams }) {
-  let { sort_by, with_genres, year, page, type } = searchParams;
-
+  let { sort_by, with_genres, year, page, vote_average, type } = searchParams;
+  console.log("🚀 ~ page ~ searchParams:", searchParams.vote_average);
 
   return (
     <div key={uuid()}>
-
       <Filters />
       <p className="px-5 text-4xl">MOVIES</p>
       <Suspense fallback={<Skeleton />}>
@@ -27,6 +25,7 @@ export default async function page({ searchParams }) {
           with_genres={with_genres}
           year={year}
           page={page}
+          vote_average={vote_average}
         />
       </Suspense>
     </div>

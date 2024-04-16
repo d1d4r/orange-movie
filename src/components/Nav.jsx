@@ -18,10 +18,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import AccountMenu from "./account/AccountMenu";
 
 export default function Nav() {
   return (
-    <header className="flex p-5 border">
+    <header className="flex justify-between p-3 border">
+      <AccountMenu />
       <nav
         className="max-w-[85rem] hidden w-full mx-auto px-4 sm:flex flex-wrap basis-full items-center justify-between"
         aria-label="Global"
@@ -44,8 +46,9 @@ export default function Nav() {
           </div>
         </div>
       </nav>
+
       <Sheet>
-        <SheetTrigger className="self-end sm:hidden">
+        <SheetTrigger className=" sm:hidden">
           <Menu />
         </SheetTrigger>
         <SheetContent>
@@ -72,7 +75,11 @@ export default function Nav() {
 }
 
 export function NavLink({ href, name }) {
-  return <Link href={href}>{name}</Link>;
+  return (
+    <Link href={href} className="cursor-pointer">
+      {name}
+    </Link>
+  );
 }
 
 export const MenuItemDropdown = () => {
@@ -80,27 +87,29 @@ export const MenuItemDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger>Movies</DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>
-          <Link href={"/movies?type=popular"} className="border w-full">
-            All
-          </Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Link href={"/movies?type=popular"}>Popular</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Link href={"/movies?type=now_playing"}>Now Playing </Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Link href={"/movies?type=top_rated"}>Top Rated</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Link href={"/movies?type=up_coming"}>up coming </Link>
-        </DropdownMenuItem>
+        <Link href={"/movies"}>
+          <DropdownMenuItem className="cursor-pointer">All</DropdownMenuItem>
+        </Link>
+        <Link href={"/movies?type=popular"}>
+          <DropdownMenuItem className="cursor-pointer">
+            Popular
+          </DropdownMenuItem>
+        </Link>
+        <Link href={"/movies?type=now_playing"}>
+          <DropdownMenuItem className="cursor-pointer">
+            Now Playing
+          </DropdownMenuItem>
+        </Link>
+        <Link href={"/movies?type=top_rated"}>
+          <DropdownMenuItem className="cursor-pointer">
+            Top Rated
+          </DropdownMenuItem>
+        </Link>
+        <Link href={"/movies?type=up_coming"}>
+          <DropdownMenuItem className="cursor-pointer">
+            up coming
+          </DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );

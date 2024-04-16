@@ -20,7 +20,12 @@ import { useState } from "react";
 
 export default function Combobox({ items, name }) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
+
+  const handleValue = (currentValue) => {
+    setValue(currentValue === value ? "" : currentValue);
+    setOpen(false);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -47,8 +52,7 @@ export default function Combobox({ items, name }) {
                 key={item.value}
                 value={item.value}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
-                  setOpen(false);
+                  handleValue(currentValue);
                 }}
               >
                 {item.label}

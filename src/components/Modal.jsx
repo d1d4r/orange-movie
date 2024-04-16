@@ -3,8 +3,8 @@ import { CircleX } from "lucide-react";
 import { getTrailerMovie } from "@/data/api/movies";
 
 export default async function Modal({ id }) {
-    
-    const key = await getTrailerMovie(id);
+  const key = await getTrailerMovie(id);
+  //console.log("render modal");
   return (
     <dialog
       id="modal"
@@ -19,7 +19,7 @@ export default async function Modal({ id }) {
           </form>
         </div>
         <iframe
-          className="size-[30rem] "
+          
           src={`https://www.youtube.com/embed/${key}`}
           title={"trailae"}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

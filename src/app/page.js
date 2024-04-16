@@ -23,7 +23,7 @@ export default async function Home() {
       >
         dashbord
       </Link> */}
-      <main className="space-y-10">
+      <main className="space-y-5">
         <Suspense fallback={<SwiperSkeleton />}>
           <NowPlaying />
         </Suspense>

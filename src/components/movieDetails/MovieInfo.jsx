@@ -10,7 +10,7 @@ export default function MovieInfo({
   language,
 }) {
   return (
-    <div className="w-1/2 m-auto space-y-10 ">
+    <div className="w-full  m-auto space-y-2 md:w-1/2 ">
       <Info icone="" name="Over view" info={overview} />
       <Info
         icone={<CircleDollarSign />}

@@ -14,8 +14,23 @@ export default function SwiperActors({ title, data, href }) {
         <h2 className="text-2xl">{title}</h2>
         <Link href={href}>see more +</Link>
       </div>
-      <Swiper spaceBetween={10} slidesPerView={5}>
-        {data.map((actor) => {
+      <Swiper
+        breakpoints={{
+          330: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 10,
+          },
+        }}
+      >
+        {data?.map((actor) => {
           return (
             <SwiperSlide key={actor.id}>
               <ActorCard actor={actor} />
@@ -26,4 +41,3 @@ export default function SwiperActors({ title, data, href }) {
     </div>
   );
 }
-

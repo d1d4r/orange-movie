@@ -25,7 +25,7 @@ export default function YearsFilter({ data, name }) {
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const value1 = searchParams.get("year");
+  const value1 = searchParams.get("years");
 
   const createPageURL = (years) => {
     const params = new URLSearchParams(searchParams);

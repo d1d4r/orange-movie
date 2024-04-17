@@ -6,36 +6,40 @@ import UpComing from "@/components/moviesList/UpComing";
 import SwiperSkeleton from "@/components/SwiperSkeleton";
 import Link from "next/link";
 import { Suspense } from "react";
-
-const person = {
-  name: "didar",
-  age: 24,
-};
 export default async function Home() {
   return (
     <div>
       <MovieCarousel />
-      {/* <Link
-        href={{
-          pathname: "/dashbord",
-          query: { person: JSON.stringify(person) },
-        }}
-      >
-        dashbord
-      </Link> */}
-      <main className="space-y-5">
+      <main className="p-5">
         <Suspense fallback={<SwiperSkeleton />}>
           <NowPlaying />
         </Suspense>
         <Suspense fallback={<SwiperSkeleton />}>
           <TopRated />
         </Suspense>
-
-        <PopularMovies />
-        <UpComing />
+        <Suspense fallback={<SwiperSkeleton />}>
+          <PopularMovies />
+        </Suspense>
+        <Suspense fallback={<SwiperSkeleton />}>
+          <UpComing />
+        </Suspense>
       </main>
     </div>
   );
 }
 
 //4IsxHZfbQpe0iawGp50NwpsYE
+
+// const person = {
+//   name: "didar",
+//   age: 24,
+// };
+
+/* <Link
+        href={{
+          pathname: "/dashbord",
+          query: { person: JSON.stringify(person) },
+        }}
+      >
+        dashbord
+      </Link> */

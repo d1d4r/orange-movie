@@ -22,14 +22,14 @@ import AccountMenu from "./account/AccountMenu";
 
 export default function Nav() {
   return (
-    <header className="flex justify-between p-3 border">
+    <header className="flex justify-between p-3 text-primary">
       <AccountMenu />
       <nav
-        className="max-w-[85rem] hidden w-full mx-auto px-4 sm:flex flex-wrap basis-full items-center justify-between"
+        className="max-w-[85rem] hidden  w-full mx-auto px-4 sm:flex flex-wrap basis-full items-center justify-between"
         aria-label="Global"
       >
         <Link
-          className="flex-none text-xl font-semibold sm:order-1 dark:text-white"
+          className="flex-none text-xl font-semibold sm:order-1 text-foreground/60 hover:text-foreground/80"
           href="/"
         >
           Brand
@@ -49,7 +49,7 @@ export default function Nav() {
 
       <Sheet>
         <SheetTrigger className=" sm:hidden">
-          <Menu />
+          <Menu className="text-primary" />
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
@@ -76,7 +76,10 @@ export default function Nav() {
 
 export function NavLink({ href, name }) {
   return (
-    <Link href={href} className="cursor-pointer">
+    <Link
+      href={href}
+      className="cursor-pointer text-foreground/60 hover:text-foreground/80"
+    >
       {name}
     </Link>
   );
@@ -85,7 +88,9 @@ export function NavLink({ href, name }) {
 export const MenuItemDropdown = () => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>Movies</DropdownMenuTrigger>
+      <DropdownMenuTrigger className="text-foreground/60 hover:text-foreground/80">
+        Movies
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         <Link href={"/movies"}>
           <DropdownMenuItem className="cursor-pointer">All</DropdownMenuItem>

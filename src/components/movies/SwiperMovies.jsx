@@ -7,15 +7,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 import MovieCard from "./MovieCard";
-import useMediaQuery from "@/hooks/useMediaQuery";
 import Link from "next/link";
+import { MoveRight } from "lucide-react";
 
 export default function SwiperMovies({ title, data, href }) {
   return (
-    <div className="p-5">
-      <div className="flex justify-between mb-2">
-        <h2 className="text-2xl">{title}</h2>
-        <Link href={href}>see more +</Link>
+    <>
+      <div className="flex justify-between mb-2 text-foreground/60">
+        <h2 className="text-2xl ">{title}</h2>
+        {href !== "#" ? (
+          <Link
+            href={href}
+            className="flex items-center justify-between gap-2 text-xl group hover:text-foreground/80"
+          >
+            <span>see more</span>
+            <MoveRight className="transition-all size-6 group-hover:translate-x-2 " />
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
       <Swiper
         breakpoints={{
@@ -35,13 +45,13 @@ export default function SwiperMovies({ title, data, href }) {
       >
         {data.map((movie) => {
           return (
-            <SwiperSlide key={movie.id} >
+            <SwiperSlide key={movie.id}>
               <MovieCard movie={movie} />
             </SwiperSlide>
           );
         })}
       </Swiper>
-    </div>
+    </>
   );
 }
 

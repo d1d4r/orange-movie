@@ -6,6 +6,5 @@ export async function getAllActors(page = 1) {
 }
 export async function ActorHasMovie(id) {
   const res = await api.get(`person/${id}/movie_credits`);
-
   return res.data;
 }

@@ -10,11 +10,12 @@ import { addFav } from "@/actions/addFav";
 export default function FavButton() {
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState(null);
+  const [change, setChange] = useState(false);
 
   const pathname = usePathname();
 
   const pathArray = pathname.split("/");
-  const movieId = pathArray[pathArray.length - 1]
+  const movieId = pathArray[pathArray.length - 1];
 
   async function fetchData() {
     try {
@@ -31,7 +32,7 @@ export default function FavButton() {
   }
 
   useEffect(() => {
-    fetchData();
+    //fetchData();
   }, []);
 
   if (error) {
@@ -43,18 +44,17 @@ export default function FavButton() {
   }
 
   return (
-    <form action={addFav}>
-      <Button
-        className={cn({
-          "bg-blue-600 border-blue-600 text-white": checked,
-        })}
-      >
-        <div className="flex items-center gap-2">
-          <div className="text-lg">{checked ? <Check /> : <Heart />}</div>
-          <div>Favorite</div>
-        </div>
-      </Button>
-    </form>
+    <Button
+      type="submit"
+      className={cn({
+        "bg-blue-600 border-blue-600 text-white ": checked,
+      })}
+    >
+      <div className="flex items-center gap-2">
+        <div className="text-lg">{checked ? <Check /> : <Heart />}</div>
+        <div>Favorite</div>
+      </div>
+    </Button>
   );
 }
 

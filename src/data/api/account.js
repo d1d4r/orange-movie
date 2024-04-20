@@ -1,4 +1,5 @@
 import api from "@/lib/axios";
+import axios from "axios";
 
 export async function GetFavMovies() {
   const res = await api.get("account/21156670/favorite/movies");
@@ -13,7 +14,27 @@ export async function GetFavMovieById(movieId) {
     return movieIds.includes(movieId); // Check if movie ID exists in favorites
   } catch (error) {
     console.error("Error fetching favorite movies:", error);
-    return false; // Indicate error if fetching fails
+    throw error; // Indicate error if fetching fails
+  }
+}
+
+export async function GetFavMovieByIdd(movieId) {
+  try {
+    const res = await axios.get(
+      "https://api.themoviedb.org/3/account/21156670/favorite/movies",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjJhMDZlYjIxYjU1YmNjNmQwYjhiNzE0NDE4ODY4ZCIsInN1YiI6IjY2MDg0ZmRhMmZhZjRkMDE3ZGNhMTJjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AgaKTS42WC1tq7BbtZ45t0UX899iY3ZS119Yz1qVyro`,
+        },
+      }
+    );
+    console.log("🚀 ~ GetFavMovieByIdd ~ res.data.results:", res.data.results);
+    const movieIds = res.data.results.map((movie) => movie.id); // Extract movie IDs
+    return movieIds.includes(movieId); // Check if movie ID exists in favorites
+  } catch (error) {
+    console.error("Error fetching favorite movies:", error);
+    throw error; // Indicate error if fetching fails
   }
 }
 

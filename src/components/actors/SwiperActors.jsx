@@ -6,13 +6,24 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Link from "next/link";
 import ActorCard from "./ActorCard";
+import { MoveRight } from "lucide-react";
 
 export default function SwiperActors({ title, data, href }) {
   return (
-    <div className="p-5">
-      <div className="flex justify-between mb-2">
+    <>
+      <div className="flex justify-between mb-2 text-foreground/60">
         <h2 className="text-2xl">{title}</h2>
-        <Link href={href}>see more +</Link>
+        {href !== "#" ? (
+          <Link
+            href={href}
+            className="flex items-center justify-between gap-2 text-xl group hover:text-foreground/80"
+          >
+            <span>see more</span>
+            <MoveRight className="transition-all size-6 group-hover:translate-x-2 " />
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
       <Swiper
         breakpoints={{
@@ -38,6 +49,6 @@ export default function SwiperActors({ title, data, href }) {
           );
         })}
       </Swiper>
-    </div>
+    </>
   );
 }

@@ -9,6 +9,6 @@ export async function addFav(movieId) {
     media_id: movieId,
     favorite: true,
   });
-  revalidatePath(`/movies`);
+  //revalidatePath(`/movies`);
  // revalidateTag(tag)
 }

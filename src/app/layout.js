@@ -33,6 +33,7 @@ export default function RootLayout({ children, modal }) {
         {modal}
         {children}
         <Footer />
+        
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 export default function Skeleton() {
   return (
-    <ul className="grid grid-cols-5 gap-2 p-5">
+    <ul className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-5">
       {[...Array(10)].map((movie, index) => (
         <li key={index} className="relative animate-pulse">
           <div className="w-full overflow-hidden bg-gray-300 aspect-square h-[18rem]"></div>

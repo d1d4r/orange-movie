@@ -3,7 +3,7 @@ import React from "react";
 import MovieCard from "./MovieCard";
 import MoviesPagination from "./MoviesPagination";
 import Filters from "../filterMovies/Filters";
-import { discoverMovies } from "@/data/api/movies";
+import { discoverMovies, getGenreById } from "@/data/api/movies";
 
 export default async function MoviesList({
   sort_by,
@@ -11,7 +11,7 @@ export default async function MoviesList({
   year,
   page,
   type,
-  vote_average
+  vote_average,
 }) {
   const { data, totalPages, error } = await discoverMovies({
     sort_by,
@@ -21,12 +21,16 @@ export default async function MoviesList({
     page,
   });
 
+  // const genrName = data.map(async (movie) => {
+  //   return  await getGenreById(movie.genre_ids[0])
+  // });
+
   return (
     <div className="p-5">
       {/* <Filters /> */}
       <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5 justify-items-center">
         {data.map((movie) => {
-          return <MovieCard key={movie.id} movie={movie} />;
+          return <MovieCard key={movie.id} movie={movie}  />;
         })}
       </div>
       <MoviesPagination totalPages={totalPages} type={type} />

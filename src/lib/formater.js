@@ -45,3 +45,5 @@ export function formatMoney(value) {
 export function roundToOneDecimalPlace(number) {
   return number.toFixed(1); // Round to one decimal place
 }
+
+

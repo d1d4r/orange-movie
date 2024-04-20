@@ -1,10 +1,14 @@
 import ActorList from "@/components/actors/ActorList";
-import { getAllActors } from "@/data/api/actors";
-import React from "react";
+import Skeleton from "@/components/movies/Skeleton";
+import { Suspense } from "react";
+import { v4 as uuid } from "uuid";
 
 export default async function ActorPage({ searchParams }) {
-  const { page } = searchParams;
-  const data = await getAllActors(page);
-
-  return <ActorList actors={data} />;
+  return (
+    <div key={uuid()}>
+      <Suspense fallback={<Skeleton />}>
+        <ActorList searchParams={searchParams} />
+      </Suspense>
+    </div>
+  );
 }

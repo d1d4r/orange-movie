@@ -13,7 +13,6 @@ import { v4 as uuid } from "uuid";
 
 export default async function page({ searchParams }) {
   let { sort_by, with_genres, year, page, vote_average, type } = searchParams;
-  console.log("🚀 ~ page ~ searchParams:", searchParams.vote_average);
 
   return (
     <div key={uuid()}>

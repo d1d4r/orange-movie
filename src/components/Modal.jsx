@@ -4,7 +4,6 @@ import { getTrailerMovie } from "@/data/api/movies";
 
 export default async function Modal({ id }) {
   const key = await getTrailerMovie(id);
-  //console.log("render modal");
   return (
     <dialog
       id="modal"

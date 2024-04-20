@@ -8,8 +8,7 @@ import { getGenreById } from "@/data/api/movies";
 import { Vote } from "lucide-react";
 
 export default async function MovieCard({ movie }) {
-  // const genrName = await getGenreById(movie.genre_ids[0]);
-  // console.log("🚀 ~ MovieCard ~ genrName:", genrName);
+
   return (
     <div>
       <Link
@@ -30,7 +29,7 @@ export default async function MovieCard({ movie }) {
             {movie.original_title}
           </h3>
           <div className="flex mt-2 text-gray-500 dark:text-gray-400">
-            <p className=" ">
+            <p className="">
               {getYear(movie.release_date)}|
             </p>
             <div className="flex">

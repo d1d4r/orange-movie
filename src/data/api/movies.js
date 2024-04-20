@@ -14,7 +14,6 @@ export const discoverMovies = async ({
     return { data: res.data.results, totalPages: res.data.total_pages };
   } catch (error) {
     return { error: error.code };
-    console.log("🚀 ~ error:", error);
   }
 };
 export const getPopularMovies = async () => {

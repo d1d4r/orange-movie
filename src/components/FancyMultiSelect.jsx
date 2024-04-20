@@ -31,7 +31,6 @@ export function FancyMultiSelect({ data }) {
 
     setSelected((prev) => [...prev, value.value]);
 
-    console.log("🚀 ~ handleRoute ~ filtersGen:", selected);
     newParams.set("with_genres", selected);
 
     router.push(`${pathname}?${newParams.toString()}`);

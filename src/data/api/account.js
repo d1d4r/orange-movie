@@ -3,7 +3,6 @@ import axios from "axios";
 
 export async function GetFavMovies() {
   const res = await api.get("account/21156670/favorite/movies");
-  console.log("🚀 ~ GetFavMovies ~ res.data.results:", res.data.results);
   return res.data.results;
 }
 
@@ -29,7 +28,6 @@ export async function GetFavMovieByIdd(movieId) {
         },
       }
     );
-    console.log("🚀 ~ GetFavMovieByIdd ~ res.data.results:", res.data.results);
     const movieIds = res.data.results.map((movie) => movie.id); // Extract movie IDs
     return movieIds.includes(movieId); // Check if movie ID exists in favorites
   } catch (error) {
@@ -40,7 +38,6 @@ export async function GetFavMovieByIdd(movieId) {
 
 export async function GetWatchListMovies() {
   const res = await api.get("account/21156670/watchlist/movies");
-  console.log("🚀 ~ GetFavMovies ~ res.data.results:", res.data.results);
   return res.data.results;
 }
 

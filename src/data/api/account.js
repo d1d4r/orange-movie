@@ -25,7 +25,7 @@ export async function GetFavMovieByIdd(movieId) {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjJhMDZlYjIxYjU1YmNjNmQwYjhiNzE0NDE4ODY4ZCIsInN1YiI6IjY2MDg0ZmRhMmZhZjRkMDE3ZGNhMTJjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AgaKTS42WC1tq7BbtZ45t0UX899iY3ZS119Yz1qVyro`,
+          Authorization: `Bearer `,
         },
       }
     );

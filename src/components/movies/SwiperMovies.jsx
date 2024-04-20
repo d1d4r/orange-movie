@@ -3,14 +3,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 // import "swiper/css";
-// import "swiper/css/navigation";
+import "swiper/css/navigation";
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 import MovieCard from "./MovieCard";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
+import { Navigation } from "swiper/modules";
+import { SwiperNavButtons } from "../SwiperNavButton";
 
 export default function SwiperMovies({ title, data, href }) {
+  
   return (
     <>
       <div className="flex justify-between mb-2 text-foreground/60">
@@ -28,6 +31,8 @@ export default function SwiperMovies({ title, data, href }) {
         )}
       </div>
       <Swiper
+       
+       
         breakpoints={{
           330: {
             slidesPerView: 2,
@@ -49,7 +54,9 @@ export default function SwiperMovies({ title, data, href }) {
               <MovieCard movie={movie} />
             </SwiperSlide>
           );
+          
         })}
+        <SwiperNavButtons />
       </Swiper>
     </>
   );

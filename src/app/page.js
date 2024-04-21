@@ -4,27 +4,28 @@ import PopularMovies from "@/components/moviesList/PopularMovies";
 import TopRated from "@/components/moviesList/TopRated";
 import UpComing from "@/components/moviesList/UpComing";
 import SwiperSkeleton from "@/components/SwiperSkeleton";
-import Link from "next/link";
 import { Suspense } from "react";
 export default async function Home() {
   return (
-    <div>
-      <MovieCarousel />
-      <main className="p-5">
-        <Suspense fallback={<SwiperSkeleton />}>
-          <NowPlaying />
-        </Suspense>
-        <Suspense fallback={<SwiperSkeleton />}>
-          <TopRated />
-        </Suspense>
-        <Suspense fallback={<SwiperSkeleton />}>
-          <PopularMovies />
-        </Suspense>
-        <Suspense fallback={<SwiperSkeleton />}>
-          <UpComing />
-        </Suspense>
+    <>
+      <main>
+        <MovieCarousel />
+        <div className="p-5">
+          <Suspense fallback={<SwiperSkeleton />}>
+            <NowPlaying />
+          </Suspense>
+          <Suspense fallback={<SwiperSkeleton />}>
+            <TopRated />
+          </Suspense>
+          <Suspense fallback={<SwiperSkeleton />}>
+            <PopularMovies />
+          </Suspense>
+          <Suspense fallback={<SwiperSkeleton />}>
+            <UpComing />
+          </Suspense>
+        </div>
       </main>
-    </div>
+    </>
   );
 }
 

@@ -1,11 +1,12 @@
 // import { Inter } from "next/font/google";
 import { Inter as FontSans } from "next/font/google";
-
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import NextTopLoader from "nextjs-toploader";
 import { cn } from "@/lib/utils";
+
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children, modal }) {
         <Nav />
         {modal}
         {children}
+        <SpeedInsights/>
         <Footer />
         
       </body>

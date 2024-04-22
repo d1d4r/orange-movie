@@ -1,60 +1,59 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { Button } from "../ui/button";
 import { Check, Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { GetFavMovieByIdd } from "@/data/api/account";
-import { usePathname } from "next/navigation";
-import { addFav } from "@/actions/addFav";
+import { GetAccountStates } from "@/data/api/movies";
+import ActionButton from "../ActionButton";
 
-export default function FavButton() {
-  const [checked, setChecked] = useState(false);
-  const [error, setError] = useState(null);
-  const [change, setChange] = useState(false);
+export default async function FavButton({ movieId }) {
+  const { favorite: checked } = await GetAccountStates(movieId);
 
-  const pathname = usePathname();
+  // const [checked, setChecked] = useState(false);
+  // const [error, setError] = useState(null);
 
-  const pathArray = pathname.split("/");
-  const movieId = pathArray[pathArray.length - 1];
+  // const pathname = usePathname();
 
-  async function fetchData() {
-    try {
-      const res = await GetFavMovieByIdd(+movieId);
-      setChecked(res);
-      // const res = await axios.get(
-      //   "https://jsonplaceholder.typicode.coms/todos/1"
-      // );
+  // const pathArray = pathname.split("/");
+  // const movieId = pathArray[pathArray.length - 1];
 
-      // setChecked(res.data);
-    } catch (error) {
-      setError(error);
-    }
-  }
+  // async function fetchData() {
+  //   try {
+  //     const res = await GetAccountStates(+movieId);
 
-  useEffect(() => {
-    //fetchData();
-  }, []);
+  //     setChecked(res.favorite);
+  //   } catch (error) {
+  //     setError(error);
+  //   }
+  // }
 
-  if (error) {
-    return (
-      <div className="p-2 text-red-700 bg-white">
-        {error.code}:{error.message}
-      </div>
-    );
-  }
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  // if (error) {
+  //   return (
+  //     <div className="p-2 text-red-700 bg-white">
+  //       {error.code}:{error.message}
+  //     </div>
+  //   );
+  // }
 
   return (
-    <Button
-      type="submit"
-      className={cn({
-        "bg-blue-600 border-blue-600 text-white ": checked,
-      })}
-    >
-      <div className="flex items-center gap-2">
-        <div className="text-lg">{checked ? <Check /> : <Heart />}</div>
-        <div>Favorite</div>
-      </div>
-    </Button>
+    <>
+      {/* <Button
+        className={cn({
+          "bg-blue-600 border-blue-600 text-white ": checked,
+        })}
+      >
+        <div className="flex items-center gap-2">
+          <div className="text-lg">{checked ? <Check /> : <Heart />}</div>
+          <div>Favorite</div>
+        </div>
+      </Button> */}
+      <ActionButton movieId={movieId} checked={checked}>
+        <div className="flex items-center gap-2">
+          <div className="text-lg">{checked ? <Check /> : <Heart />}</div>
+          <div>Favorite</div>
+        </div>
+      </ActionButton>
+    </>
   );
 }
 

@@ -10,7 +10,6 @@ import api from "@/lib/axios";
 import React, { Suspense } from "react";
 import { v4 as uuid } from "uuid";
 
-
 export default async function page({ searchParams }) {
   let { sort_by, with_genres, year, page, vote_average, type } = searchParams;
 

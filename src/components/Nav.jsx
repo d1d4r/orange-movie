@@ -19,21 +19,27 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import AccountMenu from "./account/AccountMenu";
+import SearchModal from "./SearchModal";
 
 export default function Nav() {
   return (
     <header className="flex justify-between p-3 text-primary">
-      <AccountMenu />
+      <div className="flex w-full gap-2">
+        <div className="flex items-center justify-center gap-2 ">
+          <AccountMenu />
+          <Link
+            className="flex-none text-xl font-semibold sm:order-1 text-foreground/60 hover:text-foreground/80"
+            href="/"
+          >
+            Brand
+          </Link>
+        </div>
+        {/* <SearchModal /> */}
+      </div>
       <nav
-        className="max-w-[85rem] hidden  w-full mx-auto px-4 sm:flex flex-wrap basis-full items-center justify-between"
+        className="flex-wrap items-center justify-between hidden px-4 w-fit sm:flex "
         aria-label="Global"
       >
-        <Link
-          className="flex-none text-xl font-semibold sm:order-1 text-foreground/60 hover:text-foreground/80"
-          href="/"
-        >
-          Brand
-        </Link>
         <div
           id="navbar-alignment"
           className="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow sm:grow-0 sm:basis-auto sm:block sm:order-2"

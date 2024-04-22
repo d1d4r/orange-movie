@@ -26,20 +26,26 @@ export default function AccountMenu() {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={"/account"}  className="flex justify-between w-full p-0 m-0">
+          <Link
+            href={"/account"}
+            className="flex justify-between w-full p-0 m-0"
+          >
             <span>Account</span>
-            <CircleUserRound className="text-primary size-6"/>
+            <CircleUserRound className="text-primary size-6" />
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Button variant="destructive" className="flex justify-between w-full p-0 m-0">
+          <Button
+            variant="destructive"
+            className="flex justify-between w-full p-0 m-0"
+          >
             <span>Sign Out</span>
             <LogOut className=" size-6" />
           </Button>
         </DropdownMenuItem>
-        {/* <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild>
           <Link href={"/sign-up"}>SignUp</Link>
-        </DropdownMenuItem> */}
+        </DropdownMenuItem>
 
         {/* <DropdownMenuItem asChild>
           <OpenModal />

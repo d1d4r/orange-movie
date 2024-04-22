@@ -1,19 +1,14 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-// import "swiper/css";
 import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import "swiper/css/scrollbar";
 import MovieCard from "./MovieCard";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
-import { Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { SwiperNavButtons } from "../SwiperNavButton";
-
-export default function SwiperMovies({ title, data, href }) {
-  
+import "swiper/css/autoplay";
+import "swiper/css";
+export default function SwiperMovies({ title, data, href, children }) {
   return (
     <>
       <div className="flex justify-between mb-2 text-foreground/60">
@@ -31,8 +26,11 @@ export default function SwiperMovies({ title, data, href }) {
         )}
       </div>
       <Swiper
-       
-       
+        modules={[Autoplay]}
+        // autoplay={{
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        // }}
         breakpoints={{
           330: {
             slidesPerView: 2,
@@ -54,12 +52,9 @@ export default function SwiperMovies({ title, data, href }) {
               <MovieCard movie={movie} />
             </SwiperSlide>
           );
-          
         })}
         <SwiperNavButtons />
       </Swiper>
     </>
   );
 }
-
-// const isLarge = useMediaQuery("(min-width: 900px)");

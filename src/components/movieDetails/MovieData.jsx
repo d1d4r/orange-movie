@@ -13,6 +13,7 @@ export default async function MovieData({movieId}) {
         original_title={data.original_title}
         runtime={data.runtime}
         release_date={data.release_date}
+        movieId={movieId}
       />
       <MovieInfo
         vote_average={data.vote_average}

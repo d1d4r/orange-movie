@@ -4,7 +4,6 @@ import SwiperMovies from "../movies/SwiperMovies";
 import { getPopularMovies } from "@/data/api/movies";
 
 export default async function PopularMovies() {
-  //await new Promise((resolve) => setTimeout(() => resolve(), 6000));
 
   const { data, error } = await getPopularMovies();
   return data ? (

@@ -21,9 +21,6 @@ export default async function MoviesList({
     page,
   });
 
-  // const genrName = data.map(async (movie) => {
-  //   return  await getGenreById(movie.genre_ids[0])
-  // });
 
   return (
     <div className="p-5">

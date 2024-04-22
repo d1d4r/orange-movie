@@ -11,6 +11,7 @@ export default function MoviePoster({
   backdrop_path,
   runtime,
   release_date,
+  movieId
 }) {
   return (
     <div className="h-[60vh] md:h-[80vh] grid grid-rows-1 grid-cols-1 ">
@@ -29,8 +30,8 @@ export default function MoviePoster({
         </p>
         <TrailerButton />
         <div className="flex items-center justify-center gap-2">
-          <WatchListButton />
-          <FavButton />
+          <WatchListButton movieId={movieId}/>
+          <FavButton movieId={movieId} />
         </div>
       </div>
     </div>

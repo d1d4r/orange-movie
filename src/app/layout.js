@@ -7,7 +7,7 @@ import NextTopLoader from "nextjs-toploader";
 import { cn } from "@/lib/utils";
 
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
+import { Analytics } from "@vercel/analytics/react"
 // const inter = Inter({ subsets: ["latin"] });
 
 const fontSans = FontSans({
@@ -33,7 +33,8 @@ export default function RootLayout({ children, modal }) {
         <Nav />
         {modal}
         {children}
-        <SpeedInsights/>
+        <SpeedInsights />
+        <Analytics/>
         <Footer />
         
       </body>

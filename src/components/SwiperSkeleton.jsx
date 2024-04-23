@@ -16,7 +16,24 @@ export default function SwiperSkeleton() {
         <h2 className="text-2xl">loading...</h2>
         <p>see more +</p>
       </div>
-      <Swiper spaceBetween={10} slidesPerView={5}>
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={5}
+        breakpoints={{
+          330: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 10,
+          },
+        }}
+      >
         {skiltons.map((skilton) => {
           return (
             <SwiperSlide key={skilton}>

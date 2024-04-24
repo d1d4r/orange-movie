@@ -49,6 +49,29 @@ export const getNowPlayMovies = async () => {
     return { error: error.code };
   }
 };
+
+export const SearchMulti = async (query = "panda") => {
+  try {
+    const res = await api.get(
+      `search/multi?query=${query}&language=en-US&page=1`
+    );
+
+    const movie = [];
+    const tv = [];
+    res.data.results.map((search) => {
+      if (search.media_type === "movie") {
+        movie.push(search);
+      }
+      if (search.media_type === "tv") {
+        tv.push(search);
+      }
+    });
+ 
+    return { movie, tv };
+  } catch (error) {
+    console.log("🚀 ~ SearchMulti ~ error:", error);
+  }
+};
 export const getAllMovies = async () => {
   try {
     const [popularMovies, topRatedMovies, nowPlayingMovies] = await Promise.all(

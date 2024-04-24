@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import ImageFallback from "../movies/ImageFallback";
 
 export default function ActorCard({ actor }) {
   return (
@@ -16,12 +17,19 @@ export default function ActorCard({ actor }) {
       </div> */}
       <div className="col-start-1 row-start-1">
         <div className="flex-grow ">
-          <Image
+          {/* <Image
             height={300}
             width={300}
             className="object-cover select-none h-80"
             src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
             alt="Image Description"
+          /> */}
+          <ImageFallback
+            className="object-cover  select-none h-[18rem] animate-shade"
+            src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+            width={300}
+            height={300}
+            alt="alt"
           />
         </div>
         <div className="z-10">
@@ -29,7 +37,8 @@ export default function ActorCard({ actor }) {
             {actor.name}
           </h3>
           <p className="mt-1 text-gray-500 dark:text-gray-400">
-            {actor.gender === 1 ? "female" : "male"}|{actor.known_for_department}
+            {actor.gender === 1 ? "female" : "male"}|
+            {actor.known_for_department}
           </p>
         </div>
       </div>

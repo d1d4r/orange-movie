@@ -5,18 +5,26 @@ import FavButton from "../movies/FavButton";
 import WatchListButton from "../movies/WatchListButton";
 import TrailerButton from "../movies/TrailerButton";
 import Image from "next/image";
+import ImageFallback from "../movies/ImageFallback";
 
 export default function MoviePoster({
   original_title,
   backdrop_path,
   runtime,
   release_date,
-  movieId
+  movieId,
 }) {
   return (
     <div className="h-[60vh] md:h-[80vh] grid grid-rows-1 grid-cols-1 ">
       <div className="z-10 col-start-1 row-start-1 bg-gradient-to-b from-black "></div>
-      <Image
+      {/* <Image
+        height={700}
+        width={700}
+        className="object-cover col-start-1 row-start-1 select-none size-full"
+        src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+        alt="poster"
+      /> */}
+      <ImageFallback
         height={700}
         width={700}
         className="object-cover col-start-1 row-start-1 select-none size-full"
@@ -30,7 +38,7 @@ export default function MoviePoster({
         </p>
         <TrailerButton />
         <div className="flex items-center justify-center gap-2">
-          <WatchListButton movieId={movieId}/>
+          <WatchListButton movieId={movieId} />
           <FavButton movieId={movieId} />
         </div>
       </div>

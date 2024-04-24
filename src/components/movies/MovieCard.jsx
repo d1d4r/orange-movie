@@ -8,7 +8,6 @@ import { getGenreById } from "@/data/api/movies";
 import { Vote } from "lucide-react";
 
 export default async function MovieCard({ movie }) {
-
   return (
     <div>
       <Link
@@ -16,7 +15,14 @@ export default async function MovieCard({ movie }) {
         href={`/movies/${movie.id}`}
       >
         <div className="bg-gray-100 w-fit">
-          <Image
+          {/* <Image
+            className="object-cover  select-none h-[18rem] animate-shade"
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            width={300}
+            height={300}
+            alt="alt"
+          /> */}
+          <ImageFallback
             className="object-cover  select-none h-[18rem] animate-shade"
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             width={300}
@@ -29,9 +35,7 @@ export default async function MovieCard({ movie }) {
             {movie.original_title}
           </h3>
           <div className="flex mt-2 text-gray-500 dark:text-gray-400">
-            <p className="">
-              {getYear(movie.release_date)}|
-            </p>
+            <p className="">{getYear(movie.release_date)}|</p>
             <div className="flex">
               <Vote />
               <p>{roundToOneDecimalPlace(movie.vote_average)}</p>

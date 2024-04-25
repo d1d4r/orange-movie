@@ -21,10 +21,6 @@ export function SearchCommand() {
     }
   }, [pathname]);
 
-  const closeSearch = () => {
-    console.log("clicked");
-  };
-
   return (
     <div className="flex items-center w-full max-w-sm space-x-2 ">
       <Input
@@ -50,13 +46,7 @@ export function SearchCommand() {
                 <TabsContent value="movies">
                   <ul>
                     {SearchResult.movie.map((movie) => {
-                      return (
-                        <SearchCard
-                          key={movie.id}
-                          movie={movie}
-                          onClick={closeSearch}
-                        />
-                      );
+                      return <SearchCard key={movie.id} movie={movie} />;
                     })}
                   </ul>
                 </TabsContent>
@@ -68,7 +58,6 @@ export function SearchCommand() {
                           path="tv-show"
                           key={movie.id}
                           movie={movie}
-                          onClick={closeSearch}
                         />
                       );
                     })}

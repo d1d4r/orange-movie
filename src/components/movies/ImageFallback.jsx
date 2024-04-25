@@ -1,4 +1,5 @@
 "use client";
+import { shimmer, toBase64 } from "@/lib/shimmer";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -18,6 +19,8 @@ export default function ImageFallback({ src, alt, ...rest }) {
       onError={() => {
         setImgSrc("/broken-image.webp");
       }}
+      placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(300, 300))}`}
+      onLoadingComplete={(image)=> image.classList.remove('opacity-0')}
     />
   );
 }

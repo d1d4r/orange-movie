@@ -14,9 +14,9 @@ export default async function MovieCard({ movie, path = "movies" }) {
         className="flex flex-col transition-all h-96 sm:hover:scale-90"
         href={`/${path}/${movie.id}`}
       >
-        <div className="bg-gray-100 w-fit">
+        <div className="bg-gray-100 w-fit ">
           <ImageFallback
-            className="object-cover  select-none h-[18rem] animate-shade"
+            className="object-cover  select-none h-[18rem] opacity-0 transition-opacity duration-[2s]"
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             width={300}
             height={300}

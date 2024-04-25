@@ -20,7 +20,7 @@ export default async function MovieData({movieId}) {
         release_date={data.release_date}
         budget={data.budget}
         overview={data.overview}
-        language={data.spoken_languages[0].name}
+        language={data.spoken_languages[0]?.name}
         genres={data.genres}
       />
     </>

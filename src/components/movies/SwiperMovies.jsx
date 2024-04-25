@@ -8,29 +8,35 @@ import { Autoplay } from "swiper/modules";
 import { SwiperNavButtons } from "../SwiperNavButton";
 import "swiper/css/autoplay";
 import "swiper/css";
-export default function SwiperMovies({ title, data, href, children }) {
+import { useRef } from "react";
+
+export default function SwiperMovies({ title, data, href }) {
+  const swiperRef = useRef();
   return (
     <>
-      <div className="flex justify-between mb-2 text-foreground/60">
-        <h2 className="text-2xl ">{title}</h2>
+      <div className="flex items-center justify-between text-foreground/60">
         {href !== "#" ? (
           <Link
             href={href}
-            className="flex items-center justify-between gap-2 text-xl group hover:text-foreground/80"
+            className="flex items-center justify-between gap-2 text-2xl group hover:text-foreground/80"
           >
-            <span>see more</span>
+            <span>{title}</span>
             <MoveRight className="transition-all size-6 group-hover:translate-x-2 " />
           </Link>
         ) : (
-          <></>
+          <h2 className="text-2xl">{title}</h2>
         )}
+        <SwiperNavButtons
+          onClickPrev={() => swiperRef.current.slidePrev()}
+          onClickNext={() => swiperRef.current.slideNext()}
+        />
       </div>
       <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        
         modules={[Autoplay]}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
         breakpoints={{
           330: {
             slidesPerView: 2,
@@ -53,7 +59,6 @@ export default function SwiperMovies({ title, data, href, children }) {
             </SwiperSlide>
           );
         })}
-        <SwiperNavButtons />
       </Swiper>
     </>
   );

@@ -19,7 +19,6 @@ export default function ImageFallback({ src, alt, ...rest }) {
       onError={() => {
         setImgSrc("/broken-image.webp");
       }}
-      placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(300, 300))}`}
       onLoadingComplete={(image)=> image.classList.remove('opacity-0')}
     />
   );

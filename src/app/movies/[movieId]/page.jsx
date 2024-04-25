@@ -4,7 +4,6 @@ import StreamSwiper from "@/components/actors/StreamSwiper";
 import SwiperSkeleton from "@/components/SwiperSkeleton";
 import MovieData from "@/components/movieDetails/MovieData";
 import SimilarSwiper from "@/components/movies/SimilarSwiper";
-import PortalButton from "@/components/PortalButton";
 
 const MyLazyComponent = dynamic(() => import("@/components/Modal"));
 
@@ -12,7 +11,6 @@ export default async function MovieDetails({ params }) {
   return (
     <>
       <div>
-        {/* <PortalButton /> */}
         <MyLazyComponent id={params.movieId} />
         <MovieData movieId={params.movieId} />
         <div className="p-5 space-y-6">

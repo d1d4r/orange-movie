@@ -11,9 +11,9 @@ export default function SearchCard({ movie, path = "movies" }) {
       href={`/${path}/${movie.id}`}
     >
       <div className="grid grid-cols-3 grid-rows-1 gap-2">
-        <div className="col-start-1 place-self-center row-start-1 h-[5rem] bg-foreground/80">
+        <div className="col-start-1 place-self-center row-start-1 h-[5rem] bg-foreground/80 rounded-md">
           <ImageFallback
-            className="object-cover  select-none w-[8rem] h-full animate-shade rounded-md"
+            className="object-cover select-none w-[8rem] h-full opacity-0 transition-opacity duration-1000 rounded-md"
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             width={128}
             height={80}

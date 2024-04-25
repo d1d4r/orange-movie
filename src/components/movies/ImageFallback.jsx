@@ -19,7 +19,7 @@ export default function ImageFallback({ src, alt, ...rest }) {
       onError={() => {
         setImgSrc("/broken-image.webp");
       }}
-      onLoadingComplete={(image)=> image.classList.remove('opacity-0')}
+      // onLoadingComplete={(image)=> image.classList.remove('opacity-0')}
     />
   );
 }

@@ -7,15 +7,17 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Skeleton } from "./ui/skeleton";
+import { SwiperNavButtons } from "./SwiperNavButton";
 
 export default function SwiperSkeleton() {
   const skiltons = [1, 2, 3, 4, 5, 6];
   return (
-    <div className="p-5">
-      <div className="flex justify-between mb-2">
+    <>
+      <div className="flex items-center justify-between border text-foreground/60">
         <h2 className="text-2xl">loading...</h2>
-        <p>see more +</p>
+        <SwiperNavButtons />
       </div>
+
       <Swiper
         spaceBetween={10}
         slidesPerView={5}
@@ -48,7 +50,7 @@ export default function SwiperSkeleton() {
           );
         })}
       </Swiper>
-    </div>
+    </>
   );
 }
 

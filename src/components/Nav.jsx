@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import AccountMenu from "./account/AccountMenu";
-import SearchModal from "./SearchModal";
+import { SearchCommand } from "./SearchCommand";
 
 export default function Nav() {
   return (
@@ -35,6 +35,7 @@ export default function Nav() {
           </Link>
         </div>
         {/* <SearchModal /> */}
+        <SearchCommand/>
       </div>
       <nav
         className="flex-wrap items-center justify-between hidden px-4 w-fit sm:flex "

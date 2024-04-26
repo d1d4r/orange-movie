@@ -8,6 +8,7 @@ import { getGenreById } from "@/data/api/movies";
 import { Vote } from "lucide-react";
 
 export default async function MovieCard({ movie, path = "movies" }) {
+ 
   return (
     <div>
       <Link
@@ -16,7 +17,7 @@ export default async function MovieCard({ movie, path = "movies" }) {
       >
         <div className="bg-gray-100 w-fit ">
           <ImageFallback
-            className="object-cover  select-none h-[18rem] opacity-0 transition-opacity duration-1000"
+            className="object-cover  select-none h-[18rem]  transition-opacity duration-1000"
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             width={300}
             height={300}

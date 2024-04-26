@@ -1,4 +1,5 @@
 "use client";
+import { rgbDataURL, shimmer, toBase64 } from "@/lib/shimmer";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -13,13 +14,14 @@ export default function ImageFallback({ src, alt, ...rest }) {
     <Image
       alt={alt}
       {...rest}
-      src={imgSrc ? imgSrc : "/broken-image.webp"}
+      src={imgSrc ? imgSrc : "/fail-load.jpg"}
       onError={() => {
-        setImgSrc("/broken-image.webp");
+        setImgSrc("/fail-load.jpg");
       }}
-      onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+      //placeholder="blur"
+      placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(300, 300))}`}
+      blurDataURL={rgbDataURL(237, 181, 6)}
+      onLoad={(e) =>{ e.target.classList.remove("opacity-0")}}
     />
   );
 }
-// import { shimmer, toBase64 } from "@/lib/shimmer";
-// placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(300, 300))}`}

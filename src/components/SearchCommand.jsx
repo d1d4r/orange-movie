@@ -5,18 +5,30 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useEffect, useState } from "react";
 import SearchCard from "./movies/SearchCard";
 import { usePathname } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 export function SearchCommand() {
   const [SearchResult, setSearchResult] = useState({ movie: [], tv: [] });
+ 
+
   const pathname = usePathname();
 
-  const SearchHandle = async (e) => {
-    const { movie, tv } = await SearchMulti(e.target.value);
-    setSearchResult((prev) => ({ ...prev, movie: movie, tv: tv }));
-  };
+  const SearchHandle = useDebouncedCallback(async (e) => {
+    try {
+      setLoading(true);
+      const { movie, tv } = await SearchMulti(e.target.value);
+      setSearchResult((prev) => ({ ...prev, movie: movie, tv: tv }));
+    } catch (error) {
+      console.log("🚀 ~ SearchHandle ~ error:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, 400);
+
+
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (pathname !== "/" ) {
       setSearchResult({ movie: [], tv: [] });
     }
   }, [pathname]);
@@ -24,6 +36,8 @@ export function SearchCommand() {
   return (
     <div className="flex items-center w-full max-w-sm space-x-2 ">
       <Input
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
         className="rounded-lg"
         placeholder="Search..."
         type="search"
@@ -33,8 +47,8 @@ export function SearchCommand() {
       {(SearchResult.movie.length > 0 || SearchResult.tv.length > 0) && (
         <div className="absolute right-0 z-30 h-screen w-screen bg-white border rounded-md md:w-[600px] md:left-0 top-14 overflow-y-scroll overflow-x-hidden">
           <div className="">
-            <Tabs defaultValue="movies" className="">
-              <div>
+            <Tabs defaultValue="movies">
+              <div className="my-4 text-center">
                 <TabsList>
                   <TabsTrigger value="movies">
                     movies ({SearchResult.movie.length})
@@ -43,27 +57,23 @@ export function SearchCommand() {
                     tvshow ({SearchResult.tv.length})
                   </TabsTrigger>
                 </TabsList>
-                <TabsContent value="movies">
-                  <ul>
-                    {SearchResult.movie.map((movie) => {
-                      return <SearchCard key={movie.id} movie={movie} />;
-                    })}
-                  </ul>
-                </TabsContent>
-                <TabsContent value="tvshow">
-                  <ul>
-                    {SearchResult.tv.map((movie) => {
-                      return (
-                        <SearchCard
-                          path="tv-show"
-                          key={movie.id}
-                          movie={movie}
-                        />
-                      );
-                    })}
-                  </ul>
-                </TabsContent>
               </div>
+              <TabsContent value="movies">
+                <ul>
+                  {SearchResult.movie.map((movie) => {
+                    return <SearchCard key={movie.id} movie={movie} />;
+                  })}
+                </ul>
+              </TabsContent>
+              <TabsContent value="tvshow">
+                <ul>
+                  {SearchResult.tv.map((movie) => {
+                    return (
+                      <SearchCard path="tv-show" key={movie.id} movie={movie} />
+                    );
+                  })}
+                </ul>
+              </TabsContent>
             </Tabs>
           </div>
         </div>

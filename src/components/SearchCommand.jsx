@@ -9,26 +9,20 @@ import { useDebouncedCallback } from "use-debounce";
 
 export function SearchCommand() {
   const [SearchResult, setSearchResult] = useState({ movie: [], tv: [] });
- 
 
   const pathname = usePathname();
 
   const SearchHandle = useDebouncedCallback(async (e) => {
     try {
-      setLoading(true);
       const { movie, tv } = await SearchMulti(e.target.value);
       setSearchResult((prev) => ({ ...prev, movie: movie, tv: tv }));
     } catch (error) {
       console.log("🚀 ~ SearchHandle ~ error:", error);
-    } finally {
-      setLoading(false);
-    }
+    } 
   }, 400);
 
-
-
   useEffect(() => {
-    if (pathname !== "/" ) {
+    if (pathname !== "/") {
       setSearchResult({ movie: [], tv: [] });
     }
   }, [pathname]);
@@ -36,8 +30,8 @@ export function SearchCommand() {
   return (
     <div className="flex items-center w-full max-w-sm space-x-2 ">
       <Input
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        // onFocus={() => setFocus(true)}
+        // onBlur={() => setFocus(false)}
         className="rounded-lg"
         placeholder="Search..."
         type="search"

@@ -25,7 +25,7 @@ export default function AccountMenu() {
       <DropdownMenuContent className="ml-4 ">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
+        {/* <DropdownMenuItem asChild>
           <Link
             href={"/account"}
             className="flex justify-between w-full p-0 m-0"
@@ -33,8 +33,8 @@ export default function AccountMenu() {
             <span>Account</span>
             <CircleUserRound className="text-primary size-6" />
           </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        </DropdownMenuItem> */}
+        {/* <DropdownMenuItem asChild>
           <Button
             variant="destructive"
             className="flex justify-between w-full p-0 m-0"
@@ -42,9 +42,9 @@ export default function AccountMenu() {
             <span>Sign Out</span>
             <LogOut className=" size-6" />
           </Button>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
         <DropdownMenuItem asChild>
-          <Link href={"/sign-up"}>SignUp</Link>
+          <Link href={"/sign-in"}>SignIn</Link>
         </DropdownMenuItem>
 
         {/* <DropdownMenuItem asChild>

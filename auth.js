@@ -32,14 +32,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
 });
 
-// username: 'johnny_appleseed',
-// password: 'test123',
-// request_token: '1531f1a558c8357ce8990cf887ff196e8f5402ec'
 
 
-// create Request Token
 // {
 //     "success": true,
-//     "expires_at": "2024-05-13 20:06:35 UTC",
-//     "request_token": "f4661c29ef27e27a1d0e448c98ad570956bb038b"
+//     "expires_at": "2024-05-13 20:58:49 UTC",
+//     "request_token": "fe08a58f804821da1e4fe443843af749d2909c6d"
 //   }
+

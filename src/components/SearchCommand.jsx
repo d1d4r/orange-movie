@@ -22,69 +22,93 @@ export function SearchCommand() {
     }
   }, 400);
 
+  const handleClick = (event) => {
+    if (event.clientX > 600) {
+      setSearchResult({ movie: [], tv: [] });
+      setFocus(false);
+    }
+  };
+
   useEffect(() => {
-    if (pathname !== "/" || !focus) {
+    window.addEventListener("click", handleClick);
+
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (pathname !== "/") {
       setSearchResult({ movie: [], tv: [] });
     }
-  }, [pathname, focus]);
+  }, [pathname]);
 
   return (
     <div className="flex items-center w-full max-w-sm space-x-2 ">
       <Input
         onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        onBlur={() => setFocus(true)}
         ref={inputRef}
         className="rounded-lg"
         placeholder="Search..."
         type="search"
         onChange={SearchHandle}
       />
-      {(SearchResult.movie.length > 0 || SearchResult.tv.length > 0) && (
-        <div className="absolute right-0 z-30 h-screen w-screen bg-white border rounded-md md:w-[600px] md:left-0 top-14 overflow-y-scroll overflow-x-hidden">
-          <div className="">
-            <Tabs defaultValue="movies">
-              <div className="my-4 text-center">
-                <TabsList>
-                  <TabsTrigger
-                    value="movies"
-                    name="movies"
-                    onClick={() => {
-                      setFocus(false);
-                    }}
-                  >
-                    movies ({SearchResult.movie.length})
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="tvshow"
-                    name="tvshow"
-                    onClick={() => {
-                      setFocus(false);
-                    }}
-                  >
-                    tvshow ({SearchResult.tv.length})
-                  </TabsTrigger>
-                </TabsList>
-              </div>
-              <TabsContent value="movies">
-                <ul>
-                  {SearchResult.movie.map((movie) => {
-                    return <SearchCard key={movie.id} movie={movie} />;
-                  })}
-                </ul>
-              </TabsContent>
-              <TabsContent value="tvshow">
-                <ul>
-                  {SearchResult.tv.map((movie) => {
-                    return (
-                      <SearchCard path="tv-show" key={movie.id} movie={movie} />
-                    );
-                  })}
-                </ul>
-              </TabsContent>
-            </Tabs>
+      {SearchResult.movie.length > 0 &&
+        SearchResult.tv.length > 0 &&
+        inputRef.current.value.length > 0 && (
+          <div
+            name="box-search"
+            className="absolute right-0 z-30 h-screen w-screen bg-white border rounded-md md:w-[600px] md:left-0 top-14 overflow-y-scroll overflow-x-hidden"
+          >
+            <div className="">
+              <Tabs defaultValue="movies">
+                <div className="my-4 text-center">
+                  <TabsList>
+                    <TabsTrigger
+                      value="movies"
+                      name="movies"
+                      onClick={() => {
+                        setFocus(false);
+                      }}
+                    >
+                      movies ({SearchResult.movie.length})
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="tvshow"
+                      name="tvshow"
+                      onClick={() => {
+                        setFocus(false);
+                      }}
+                    >
+                      tvshow ({SearchResult.tv.length})
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+                <TabsContent value="movies">
+                  <ul>
+                    {SearchResult.movie.map((movie) => {
+                      return <SearchCard key={movie.id} movie={movie} />;
+                    })}
+                  </ul>
+                </TabsContent>
+                <TabsContent value="tvshow">
+                  <ul>
+                    {SearchResult.tv.map((movie) => {
+                      return (
+                        <SearchCard
+                          path="tv-show"
+                          key={movie.id}
+                          movie={movie}
+                        />
+                      );
+                    })}
+                  </ul>
+                </TabsContent>
+              </Tabs>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 }

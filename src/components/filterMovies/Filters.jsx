@@ -5,8 +5,9 @@ import { Button } from "../ui/button";
 import { genresList, GetVotes, GetYears } from "@/data/api/movies";
 import { FancyMultiSelect } from "../FancyMultiSelect.1";
 import GenraFilter from "./GenraFilter";
+import Link from "next/link";
 
-export default async function Filters() {
+export default async function Filters({ href = "/movies" }) {
   const genres = await genresList();
   const years = GetYears();
   const votes = GetVotes();
@@ -16,7 +17,9 @@ export default async function Filters() {
       <GenraFilter data={genres} name="genres" />
       <YearsFilter data={years} name="years" />
       <VoteAverageGTEFilter data={votes} name="vote" />
-      <Button variant="destructive">RESET FILTERS</Button>
+      <Button asChild>
+        <Link href={href}>RESET FILTERS</Link>
+      </Button>
     </div>
   );
 }

@@ -9,11 +9,11 @@ export async function GetFavMovies() {
 export async function GetFavMovieById(movieId) {
   try {
     const res = await api.get("account/21156670/favorite/movies");
-    const movieIds = res.data.results.map((movie) => movie.id); // Extract movie IDs
-    return movieIds.includes(movieId); // Check if movie ID exists in favorites
+    const movieIds = res.data.results.map((movie) => movie.id); 
+    return movieIds.includes(movieId); 
   } catch (error) {
     console.error("Error fetching favorite movies:", error);
-    throw error; // Indicate error if fetching fails
+    throw error; 
   }
 }
 
@@ -28,11 +28,11 @@ export async function GetFavMovieByIdd(movieId) {
         },
       }
     );
-    const movieIds = res.data.results.map((movie) => movie.id); // Extract movie IDs
-    return movieIds.includes(movieId); // Check if movie ID exists in favorites
+    const movieIds = res.data.results.map((movie) => movie.id); 
+    return movieIds.includes(movieId); 
   } catch (error) {
     console.error("Error fetching favorite movies:", error);
-    throw error; // Indicate error if fetching fails
+    throw error; 
   }
 }
 
@@ -44,10 +44,10 @@ export async function GetWatchListMovies() {
 export async function GetWatchListMoviesId(movieId) {
   try {
     const res = await api.get("account/21156670/watchlist/movies");
-    const movieIds = res.data.results.map((movie) => movie.id); // Extract movie IDs
-    return movieIds.includes(movieId); // Check if movie ID exists in favorites
+    const movieIds = res.data.results.map((movie) => movie.id); 
+    return movieIds.includes(movieId); 
   } catch (error) {
     console.error("Error fetching favorite movies:", error);
-    return false; // Indicate error if fetching fails
+    return false; 
   }
 }

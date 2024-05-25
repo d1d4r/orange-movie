@@ -9,7 +9,7 @@ export default async function TvShowsPage({ searchParams }) {
 
   return (
     <div key={uuid()}>
-      <Filters />
+      <Filters href='/tv-show'/>
       <p className="px-5 text-4xl">TV SHOWS</p>
       <Suspense fallback={<Skeleton />}>
         <TvList

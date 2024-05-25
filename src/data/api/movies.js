@@ -16,6 +16,7 @@ export const discoverMovies = async ({
     return { error: error.code };
   }
 };
+
 export const getPopularMovies = async () => {
   try {
     const res = await api.get("movie/popular?language=en-US");
@@ -25,6 +26,7 @@ export const getPopularMovies = async () => {
     return { error: error.code };
   }
 };
+
 export const getTopRatedMovies = async () => {
   try {
     const res = await api.get("movie/top_rated?language=en-US");
@@ -33,6 +35,7 @@ export const getTopRatedMovies = async () => {
     return { error: error.code };
   }
 };
+
 export const getUpComingMovies = async () => {
   try {
     const res = await api.get("movie/upcoming?language=en-US");
@@ -41,6 +44,7 @@ export const getUpComingMovies = async () => {
     return { error: error.code };
   }
 };
+
 export const getNowPlayMovies = async () => {
   try {
     const res = await api.get("movie/now_playing?language=en-US");
@@ -66,12 +70,13 @@ export const SearchMulti = async (query = "panda") => {
         tv.push(search);
       }
     });
- 
+
     return { movie, tv };
   } catch (error) {
     console.log("🚀 ~ SearchMulti ~ error:", error);
   }
 };
+
 export const getAllMovies = async () => {
   try {
     const [popularMovies, topRatedMovies, nowPlayingMovies] = await Promise.all(
